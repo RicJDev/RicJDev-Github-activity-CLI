@@ -1,6 +1,12 @@
 export async function fetchUser(user) {
   try {
-    const rawData = await fetch(`https://api.github.com/users/${user.toLowerCase()}/events`).then((data) => data.json())
+    const rawData = await fetch(`https://api.github.com/users/${user.toLowerCase()}/events`, {
+      headers: {
+        accept: 'application/vnd.github+json'
+      }
+    }).then((data) => data.json())
+
+    // return rawData
 
     return rawData.map(({ id, created_at, actor, payload, type, repo, public: isPublic }) => {
       return {
@@ -19,5 +25,3 @@ export async function fetchUser(user) {
 
   return []
 }
-
-console.log(await fetchUser('ricjdev'))
