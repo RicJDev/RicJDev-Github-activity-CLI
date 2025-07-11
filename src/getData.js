@@ -1,10 +1,16 @@
-export async function fetchUser(user) {
+export async function getData(user) {
   try {
-    const rawData = await fetch(`https://api.github.com/users/${user.toLowerCase()}/events`, {
+    const response = await fetch(`https://api.github.com/users/${user.toLowerCase()}/events`, {
       headers: {
         accept: 'application/vnd.github+json'
       }
-    }).then((data) => data.json())
+    })
+
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`)
+    }
+
+    const rawData = await response.json()
 
     // return rawData
 
@@ -20,7 +26,7 @@ export async function fetchUser(user) {
       }
     })
   } catch (err) {
-    console.error(err)
+    console.error(err.message)
   }
 
   return []

@@ -1,4 +1,4 @@
-export function displayUserData(data) {
+export function displayData(data) {
   for (const { autor, repo, id, type, commits, createdAt, isPublic } of data) {
     console.log(`Actor: ${autor}`)
     console.log(`Id: ${id}`)
