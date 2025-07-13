@@ -6,9 +6,14 @@ import { displayData } from './displayData.js'
 
 const program = new Command('github-activity')
 
-program.argument('<userame>', 'The GitHub username to display the activity').action(async (username) => {
-  const data = await getData(username)
-  displayData(data)
+program.argument('<userame>', 'the GitHub username to display the activity').action(async (username) => {
+  getData(username)
+    .then((data) => {
+      displayData(data)
+    })
+    .catch((err) => {
+      console.err(err)
+    })
 })
 
 program.parse(process.argv)

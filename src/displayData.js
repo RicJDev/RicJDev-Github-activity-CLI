@@ -1,7 +1,6 @@
 export function displayData(data) {
-  for (const { autor, repo, id, type, commits, createdAt, isPublic } of data) {
-    console.log(`Actor: ${autor}`)
-    console.log(`Id: ${id}`)
+  for (const { type, isPublic, repo, createdAt, action, commits } of data) {
+    console.log(`Action: ${action}`)
     console.log(`Repo: ${repo}`)
     console.log(`Created at: ${createdAt}`)
     console.log(`Is public: ${isPublic}`)
@@ -10,4 +9,3 @@ export function displayData(data) {
     console.log('')
   }
 }
-
