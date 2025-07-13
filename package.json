@@ -15,7 +15,6 @@
     "commander": "13.1.0"
   },
   "devDependencies": {
-    "prettier": "3.5.3",
-    "vitest": "^3.2.4"
+    "prettier": "3.5.3"
   }
 }
