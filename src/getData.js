@@ -5,7 +5,7 @@ export async function getData(user) {
 
   if (!response.ok) {
     if ((response.status = 404)) {
-      throw new Error(`${user} not found. Please check and try again`)
+      throw new Error(`User "${user}" not found. Please check and try again`)
     } else {
       throw new Error(`Something failed. Response status: ${response.status}`)
     }
