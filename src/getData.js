@@ -1,6 +1,8 @@
+import { parseData } from './parseData'
+
 export async function getData(user) {
   const response = await fetch(`https://api.github.com/users/${user.toLowerCase()}/events`, {
-    headers: { accept: 'application/vnd.github+json', 'User-Agent': 'node.js' }
+    headers: { accept: 'application/vnd.github+json', 'User-Agent': 'node.js' },
   })
 
   if (!response.ok) {
@@ -12,13 +14,5 @@ export async function getData(user) {
   }
 
   const rawData = await response.json()
-
-  return rawData.map(({ created_at, payload, type, repo, public: isPublic }) => ({
-    type,
-    isPublic,
-    repo: repo.name,
-    createdAt: created_at,
-    action: payload.action,
-    commits: payload.commits?.length ?? 0
-  }))
+  return parseData(rawData)
 }
